@@ -1,13 +1,17 @@
 {
   "name": "codecon-challenge",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node src/mergeSort.js"
+    "dev": "node src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.7.0"
+  "packageManager": "pnpm@10.7.0",
+  "dependencies": {
+    "fastify": "^5.4.0"
+  }
 }
