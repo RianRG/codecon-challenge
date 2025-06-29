@@ -88,4 +88,35 @@ export async function Routes(app){
     return res.status(200).send({ teams, timeProcessing: `${Math.floor((end - start))} ms` })
     
   })
+
+  app.get('/active-users-per-day', async (req, res) =>{
+    const start = Date.now();
+
+    let seenDates = {};
+
+    let logsPerDate = users.reduce((acm, each) =>{
+      each.logs.forEach(log =>{
+        if(!seenDates[log.date]){
+          seenDates[log.date] = 1;
+          acm.push({
+            date: log.date,
+            total: 1
+          })
+        } else{
+          acm.forEach(k =>{
+            if(k.date === log.date){
+              k.total+=1;
+            }
+          })
+        }
+      })
+
+      return acm;
+    }, [])
+
+    const end = Date.now();
+
+
+    return res.status(200).send({ logins: logsPerDate, timeProcessing: `${Math.floor((end - start))} ms` })
+  })
 }
