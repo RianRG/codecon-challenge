@@ -1,5 +1,5 @@
 import fastify from 'fastify';
-import { CreateUsersRoute } from './routes/createUsersRoute.js';
+import { Routes } from './routes/routes.js';
 
 import {fileURLToPath} from 'url';
 import path, { dirname } from "node:path";
@@ -8,6 +8,6 @@ const __dirname = dirname(__filename);
 
 
 const app = fastify();
-const users = [];
-app.register(CreateUsersRoute)
+let users = [];
+app.register(Routes)
 export { app, users, __dirname };
